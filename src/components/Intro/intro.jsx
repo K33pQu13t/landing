@@ -1,17 +1,16 @@
+import React from 'react';
 import PicWithOverlay from '../picWithOverlay/picWithOverlay.jsx';
 import IntroTitle from './introTitle.jsx';
-import React, { useMemo } from 'react';
 
 const Intro = () => {
-    const introTitle = useMemo(() => <IntroTitle />, []);
-
     return (
         <PicWithOverlay
             image={
-                'https://www.branchfurniture.com/cdn/shop/files/pl-branch-conference-table-fa22-detail-866_2.jpg'
+                'https://office-magnat.ru/thumb/2/es4y1VZ5aHozyJYUiqGOSQ/r/d/zion_smart_6.jpg'
             }
-            content={introTitle}
-        />
+        >
+            <IntroTitle />
+        </PicWithOverlay>
     );
 };
 

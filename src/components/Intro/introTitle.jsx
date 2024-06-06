@@ -1,21 +1,40 @@
-import { Box, Button } from '@mui/material';
+import {
+    Box,
+    Button,
+    Typography,
+    useMediaQuery,
+    useTheme,
+} from '@mui/material';
+import { useMemo } from 'react';
 
 const IntroTitle = () => {
+    const theme = useTheme();
+    const isSmall = useMediaQuery(theme.breakpoints.down('md'));
+    const textAlign = useMemo(() => (isSmall ? 'center' : 'left'));
+
     return (
         <Box
             sx={{
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'space-between',
-                maxWidth: 374,
+                maxWidth: 360,
             }}
         >
-            <Box sx={{ fontSize: 45, lineHeight: '115%' }}>
+            <Typography
+                fontSize={{ xs: 24, sm: 30, md: 39, lg: 45 }}
+                textAlign={textAlign}
+                lineHeight={'115%'}
+            >
                 What are you working on?
-            </Box>
-            <Box sx={{ fontSize: 30, maxWidth: 468, marginTop: 4 }}>
+            </Typography>
+            <Typography
+                fontSize={{ xs: 14, sm: 18, md: 25, lg: 28 }}
+                textAlign={textAlign}
+                marginTop={4}
+            >
                 Modern work furniture for whatever you're working on.
-            </Box>
+            </Typography>
             <Button sx={{ py: '12px', marginTop: 6 }} variant='outlined'>
                 SHOP NOW
             </Button>

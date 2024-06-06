@@ -1,21 +1,40 @@
-import { Box, Card, CardMedia } from '@mui/material';
+import { Box, Card, CardMedia, useMediaQuery } from '@mui/material';
+import { useMemo } from 'react';
+import { useTheme } from '@emotion/react';
 
 const _16x9 = '56.25%';
 
-const styles = {
-    overlay: {
-        position: 'absolute',
-        bottom: '4vh',
-        left: '20px',
-        color: 'white',
-    },
-};
+const PicWithOverlay = ({ image, children }) => {
+    const theme = useTheme();
+    const shouldBeAtCenter = useMediaQuery(theme.breakpoints.down('md'));
+    const adaptiveStyles = useMemo(() => {
+        const styles = {
+            position: 'absolute',
+            bottom: '4vh',
+            left: '1.1em',
+            color: 'white',
+        };
+        let adaptiveStyles = {};
 
-const PicWithOverlay = ({ image, content }) => {
+        if (shouldBeAtCenter) {
+            adaptiveStyles = { left: '50%', transform: 'translateX(-50%)' };
+        }
+
+        return { ...styles, ...adaptiveStyles };
+    }, [shouldBeAtCenter]);
+
     return (
         <Card sx={{ position: 'relative' }}>
-            <CardMedia sx={{ height: 0, paddingTop: _16x9 }} image={image} />
-            <Box sx={styles.overlay}>{content}</Box>
+            <CardMedia
+                sx={{
+                    height: 0,
+                    paddingTop: _16x9, // { sm: '40vh', md: '50vh', lg: _16x9 },
+                    maskImage:
+                        'linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0))',
+                }}
+                image={image}
+            />
+            <Box sx={adaptiveStyles}>{children}</Box>
         </Card>
     );
 };

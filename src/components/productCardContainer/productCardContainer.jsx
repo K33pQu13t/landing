@@ -4,11 +4,11 @@ import { useMemo } from 'react';
 
 const ProductCardContainer = ({ children, title, sx = {}, titleSx = {} }) => {
     const theme = useTheme();
-    const isExtraSmall = useMediaQuery(theme.breakpoints.down('lg'));
+    const isMediumOrSmaller = useMediaQuery(theme.breakpoints.down('lg'));
 
     const justifyContent = useMemo(
-        () => (isExtraSmall ? 'center' : 'space-between'),
-        [isExtraSmall]
+        () => (isMediumOrSmaller ? 'center' : 'space-between'),
+        [isMediumOrSmaller]
     );
 
     const titleElement = useMemo(() => {
