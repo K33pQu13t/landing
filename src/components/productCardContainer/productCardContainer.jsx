@@ -2,7 +2,13 @@ import { useTheme } from '@emotion/react';
 import { Box, Grid, Typography, useMediaQuery } from '@mui/material';
 import { useMemo } from 'react';
 
-const ProductCardContainer = ({ children, title, sx = {}, titleSx = {} }) => {
+const ProductCardContainer = ({
+    children,
+    title,
+    sx = {},
+    titleSx = {},
+    rootRef = null,
+}) => {
     const theme = useTheme();
     const isMediumOrSmaller = useMediaQuery(theme.breakpoints.down('lg'));
 
@@ -31,7 +37,7 @@ const ProductCardContainer = ({ children, title, sx = {}, titleSx = {} }) => {
     }, [title]);
 
     return (
-        <>
+        <div ref={rootRef}>
             {titleElement}
             <Box
                 sx={{
@@ -51,7 +57,7 @@ const ProductCardContainer = ({ children, title, sx = {}, titleSx = {} }) => {
                     {children}
                 </Grid>
             </Box>
-        </>
+        </div>
     );
 };
 

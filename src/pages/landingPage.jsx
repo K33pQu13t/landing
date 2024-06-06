@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import Intro from '../components/intro/intro.jsx';
 import ProductCard from '../components/productCard/productCard.jsx';
 import ProductCardCell from '../components/productCardContainer/productCardCell.jsx';
@@ -7,9 +8,15 @@ const wideCardHeight = 380;
 const longCardHeight = 450;
 
 const LandingPage = () => {
+    const catalogContainerRef = useRef();
+
+    const onShopNowButtonClick = () => {
+        catalogContainerRef.current?.scrollIntoView({ behavior: 'smooth' });
+    };
+
     return (
         <>
-            <Intro />
+            <Intro onButtonClick={onShopNowButtonClick} />
 
             <ProductCardContainer
                 titleSx={{ paddingTop: 12 }}
@@ -40,6 +47,7 @@ const LandingPage = () => {
             </ProductCardContainer>
 
             <ProductCardContainer
+                rootRef={catalogContainerRef}
                 titleSx={{ paddingTop: 6 }}
                 title={'Explore our products'}
             >

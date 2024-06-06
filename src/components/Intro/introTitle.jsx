@@ -7,7 +7,7 @@ import {
 } from '@mui/material';
 import { useMemo } from 'react';
 
-const IntroTitle = () => {
+const IntroTitle = ({ onButtonClick = () => {} }) => {
     const theme = useTheme();
     const isSmall = useMediaQuery(theme.breakpoints.down('md'));
     const textAlign = useMemo(() => (isSmall ? 'center' : 'left'));
@@ -36,7 +36,11 @@ const IntroTitle = () => {
             >
                 Modern work furniture for whatever you're working on.
             </Typography>
-            <Button sx={{ py: '12px', marginTop: 6 }} variant='outlined'>
+            <Button
+                sx={{ py: '12px', marginTop: 6 }}
+                variant='outlined'
+                onClick={onButtonClick}
+            >
                 SHOP NOW
             </Button>
         </Box>
