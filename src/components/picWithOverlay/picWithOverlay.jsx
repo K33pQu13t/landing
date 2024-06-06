@@ -31,6 +31,7 @@ const PicWithOverlay = ({ image, children }) => {
                     paddingTop: _16x9, // { sm: '40vh', md: '50vh', lg: _16x9 },
                     maskImage:
                         'linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0))',
+                    opacity: 0.8,
                 }}
                 image={image}
             />

@@ -56,10 +56,10 @@ const ProductCard = ({
                 />
                 <CardContent sx={{ textAlign: textAlign }}>
                     <Typography
-                        sx={{ fontWeight: 'bold' }}
-                        gutterBottom
-                        variant='h5'
                         component='div'
+                        variant='h5'
+                        fontWeight={'bold'}
+                        gutterBottom
                     >
                         {title}
                     </Typography>

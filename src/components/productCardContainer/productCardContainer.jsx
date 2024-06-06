@@ -18,11 +18,14 @@ const ProductCardContainer = ({ children, title, sx = {}, titleSx = {} }) => {
 
         return (
             <Box
-                sx={{ marginBottom: 2, ...titleSx }}
+                sx={titleSx}
                 display={'flex'}
+                marginBottom={2}
                 justifyContent={'center'}
             >
-                <Typography variant='h4'>{title}</Typography>
+                <Typography variant='h4' textAlign={'center'}>
+                    {title}
+                </Typography>
             </Box>
         );
     }, [title]);
