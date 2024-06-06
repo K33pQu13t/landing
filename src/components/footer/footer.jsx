@@ -1,12 +1,15 @@
-import { Box, Container, Grid, Typography } from '@mui/material';
+import { Box, Container, Grid, Typography, useTheme } from '@mui/material';
 
 const Footer = () => {
+    const theme = useTheme();
+    const textColor = theme.palette.getContrastText(theme.palette.primary.main);
+
     return (
         <Box
             sx={{
                 width: '100%',
                 height: 'auto',
-                backgroundColor: 'secondary.main',
+                backgroundColor: 'primary.main',
                 paddingTop: '1rem',
                 paddingBottom: '1rem',
             }}
@@ -16,19 +19,19 @@ const Footer = () => {
             <Container maxWidth='lg'>
                 <Grid container direction='column' alignItems='center'>
                     <Grid item xs={12}>
-                        <Typography color='black' variant='h6'>
+                        <Typography color={textColor} variant='h6'>
                             ErgoCraft
                         </Typography>
                     </Grid>
                     <Grid item xs={12}>
-                        <Typography color='textSecondary' variant='subtitle1'>
+                        <Typography variant='subtitle1'>
                             2024 | React | Material UI
                         </Typography>
                     </Grid>
                 </Grid>
             </Container>
             <Typography
-                color='text.secondary'
+                color={'textColor'}
                 variant='subtitle1'
                 fontSize={'0.9rem'}
                 textAlign={'center'}

@@ -10,6 +10,22 @@ import LandingPage from './pages/landingPage.jsx';
 const appTheme = createTheme({
     palette: {
         mode: 'dark',
+        primary: {
+            main: '#EB5CAF',
+        },
+        secondary: {
+            main: '#BAD9B5',
+        },
+    },
+    components: {
+        MuiCssBaseline: {
+            styleOverrides: {
+                '::selection': {
+                    backgroundColor: '#723161',
+                    color: 'white',
+                },
+            },
+        },
     },
 });
 
@@ -17,8 +33,8 @@ function App() {
     return (
         <ThemeProvider theme={appTheme}>
             <CssBaseline />
-            <ResponsiveAppBar />
 
+            <ResponsiveAppBar />
             <LandingPage />
             <Footer />
         </ThemeProvider>

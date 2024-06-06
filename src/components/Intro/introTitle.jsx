@@ -34,7 +34,7 @@ const IntroTitle = ({ onButtonClick = () => {} }) => {
                 textAlign={textAlign}
                 marginTop={4}
             >
-                Modern work furniture for whatever you're working on.
+                Modern work furniture for whatever you're working on
             </Typography>
             <Button
                 sx={{ py: '12px', marginTop: 6 }}

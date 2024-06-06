@@ -21,7 +21,7 @@ const pages = [
     { title: 'CHAIRS' },
     { title: 'DESKS' },
     { title: 'ACCESSORIES' },
-    { title: 'SALE', sx: { color: 'crimson' } },
+    { title: 'SALE', sx: { color: 'primary.main' } },
 ];
 
 const settings = ['Account', 'Logout'];
