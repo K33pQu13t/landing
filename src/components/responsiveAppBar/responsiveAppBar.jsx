@@ -1,20 +1,30 @@
-import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
-import Container from '@mui/material/Container';
+import WeekendSharpIcon from '@mui/icons-material/WeekendSharp';
+import AppBar from '@mui/material/AppBar';
 import Avatar from '@mui/material/Avatar';
+import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
+import Container from '@mui/material/Container';
+import IconButton from '@mui/material/IconButton';
+import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
+import Toolbar from '@mui/material/Toolbar';
+import Tooltip from '@mui/material/Tooltip';
+import Typography from '@mui/material/Typography';
+import * as React from 'react';
 
-const pages = ['Products', 'Pricing', 'Blog'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+import AvatarPic from '../../pics/K33p_Qu13t.png';
+
+const companyName = 'ErgoCraft';
+
+const pages = [
+    { title: 'CHAIRS' },
+    { title: 'DESKS' },
+    { title: 'ACCESSORIES' },
+    { title: 'SALE', sx: { color: 'crimson' } },
+];
+
+const settings = ['Account', 'Logout'];
 
 function ResponsiveAppBar() {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -39,7 +49,7 @@ function ResponsiveAppBar() {
         <AppBar position='static'>
             <Container maxWidth='xl'>
                 <Toolbar disableGutters>
-                    <AdbIcon
+                    <WeekendSharpIcon
                         sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}
                     />
                     <Typography
@@ -57,7 +67,7 @@ function ResponsiveAppBar() {
                             textDecoration: 'none',
                         }}
                     >
-                        LOGO
+                        {companyName}
                     </Typography>
 
                     <Box
@@ -96,17 +106,20 @@ function ResponsiveAppBar() {
                         >
                             {pages.map((page) => (
                                 <MenuItem
-                                    key={page}
+                                    key={page.title}
                                     onClick={handleCloseNavMenu}
                                 >
-                                    <Typography textAlign='center'>
-                                        {page}
+                                    <Typography
+                                        textAlign='center'
+                                        sx={page.sx || {}}
+                                    >
+                                        {page.title}
                                     </Typography>
                                 </MenuItem>
                             ))}
                         </Menu>
                     </Box>
-                    <AdbIcon
+                    <WeekendSharpIcon
                         sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }}
                     />
                     <Typography
@@ -125,7 +138,7 @@ function ResponsiveAppBar() {
                             textDecoration: 'none',
                         }}
                     >
-                        LOGO
+                        {companyName}
                     </Typography>
                     <Box
                         sx={{
@@ -135,11 +148,16 @@ function ResponsiveAppBar() {
                     >
                         {pages.map((page) => (
                             <Button
-                                key={page}
+                                key={page.title}
                                 onClick={handleCloseNavMenu}
-                                sx={{ my: 2, color: 'white', display: 'block' }}
+                                sx={{
+                                    my: 2,
+                                    color: 'white',
+                                    display: 'block',
+                                    ...(page.sx || {}),
+                                }}
                             >
-                                {page}
+                                {page.title}
                             </Button>
                         ))}
                     </Box>
@@ -150,10 +168,7 @@ function ResponsiveAppBar() {
                                 onClick={handleOpenUserMenu}
                                 sx={{ p: 0 }}
                             >
-                                <Avatar
-                                    alt='Remy Sharp'
-                                    src='/static/images/avatar/2.jpg'
-                                />
+                                <Avatar alt='Account' src={AvatarPic} />
                             </IconButton>
                         </Tooltip>
                         <Menu
