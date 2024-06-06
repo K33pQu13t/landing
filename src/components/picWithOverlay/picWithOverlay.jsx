@@ -3,10 +3,13 @@ import { useMemo } from 'react';
 import { useTheme } from '@emotion/react';
 
 const _16x9 = '56.25%';
+const mobile = '73.25%';
 
 const PicWithOverlay = ({ image, children }) => {
     const theme = useTheme();
     const shouldBeAtCenter = useMediaQuery(theme.breakpoints.down('md'));
+    const isSmall = useMediaQuery(theme.breakpoints.down('sm'));
+
     const adaptiveStyles = useMemo(() => {
         const styles = {
             position: 'absolute',
@@ -23,12 +26,14 @@ const PicWithOverlay = ({ image, children }) => {
         return { ...styles, ...adaptiveStyles };
     }, [shouldBeAtCenter]);
 
+    const cardMediaSize = useMemo(() => (isSmall ? mobile : _16x9), [isSmall]);
+
     return (
-        <Card sx={{ position: 'relative' }}>
+        <Card sx={{ position: 'relative', borderRadius: 0 }}>
             <CardMedia
                 sx={{
                     height: 0,
-                    paddingTop: _16x9, // { sm: '40vh', md: '50vh', lg: _16x9 },
+                    paddingTop: cardMediaSize,
                     maskImage:
                         'linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0))',
                     opacity: 0.8,

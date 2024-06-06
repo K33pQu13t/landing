@@ -23,6 +23,7 @@ const IntroTitle = () => {
         >
             <Typography
                 fontSize={{ xs: 24, sm: 30, md: 39, lg: 45 }}
+                fontWeight={'bold'}
                 textAlign={textAlign}
                 lineHeight={'115%'}
             >
