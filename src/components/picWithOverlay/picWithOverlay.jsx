@@ -8,11 +8,14 @@ const mobile = '73.25%';
 const PicWithOverlay = ({ image, children }) => {
     const theme = useTheme();
     const shouldBeAtCenter = useMediaQuery(theme.breakpoints.down('md'));
+    const isSmall = useMediaQuery(theme.breakpoints.down('sm'));
+
+    const cardMediaSize = useMemo(() => (isSmall ? mobile : _16x9), [isSmall]);
 
     const cardMediaStyles = useMemo(() => {
         const styles = {
             height: 0,
-            paddingTop: { sm: mobile, md: _16x9 },
+            paddingTop: cardMediaSize,
             maskImage:
                 'linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0))',
         };
@@ -22,7 +25,7 @@ const PicWithOverlay = ({ image, children }) => {
         }
 
         return styles;
-    }, [theme.palette.mode]);
+    }, [theme.palette.mode, cardMediaSize]);
 
     const childrenContainerStyles = useMemo(() => {
         const styles = {
