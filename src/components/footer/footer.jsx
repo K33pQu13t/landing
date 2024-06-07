@@ -10,8 +10,7 @@ const Footer = () => {
                 width: '100%',
                 height: 'auto',
                 backgroundColor: 'primary.main',
-                paddingTop: '1rem',
-                paddingBottom: '1rem',
+                py: '0.1rem',
             }}
             marginTop={6}
             position={'relative'}
@@ -24,15 +23,15 @@ const Footer = () => {
                         </Typography>
                     </Grid>
                     <Grid item xs={12}>
-                        <Typography variant='subtitle1'>
+                        <Typography color='text.secondary' variant='subtitle2'>
                             2024 | React | Material UI
                         </Typography>
                     </Grid>
                 </Grid>
             </Container>
             <Typography
-                color={'textColor'}
-                variant='subtitle1'
+                color='text.secondary'
+                variant='subtitle2'
                 fontSize={'0.9rem'}
                 textAlign={'center'}
                 position={'absolute'}

@@ -1,5 +1,6 @@
 import MenuIcon from '@mui/icons-material/Menu';
 import WeekendSharpIcon from '@mui/icons-material/WeekendSharp';
+import { useTheme } from '@mui/material';
 import AppBar from '@mui/material/AppBar';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
@@ -11,24 +12,36 @@ import MenuItem from '@mui/material/MenuItem';
 import Toolbar from '@mui/material/Toolbar';
 import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
-import * as React from 'react';
-
+import { useMemo, useState } from 'react';
 import AvatarPic from '../../pics/K33p_Qu13t.png';
+import SwitchModeButton from '../switchModeButton/switchModeButton';
 
 const companyName = 'ErgoCraft';
-
-const pages = [
-    { title: 'CHAIRS' },
-    { title: 'DESKS' },
-    { title: 'ACCESSORIES' },
-    { title: 'SALE', sx: { color: 'primary.main' } },
-];
 
 const settings = ['Account', 'Logout'];
 
 function ResponsiveAppBar() {
-    const [anchorElNav, setAnchorElNav] = React.useState(null);
-    const [anchorElUser, setAnchorElUser] = React.useState(null);
+    const theme = useTheme();
+    const [anchorElNav, setAnchorElNav] = useState(null);
+    const [anchorElUser, setAnchorElUser] = useState(null);
+
+    const pages = useMemo(
+        () => [
+            { title: 'CHAIRS' },
+            { title: 'DESKS' },
+            { title: 'ACCESSORIES' },
+            {
+                title: 'SALE',
+                sx: {
+                    color:
+                        theme.palette.mode === 'dark'
+                            ? 'primary.main'
+                            : 'black',
+                },
+            },
+        ],
+        [theme.palette.mode]
+    );
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
@@ -162,7 +175,8 @@ function ResponsiveAppBar() {
                         ))}
                     </Box>
 
-                    <Box sx={{ flexGrow: 0 }}>
+                    <Box display={'flex'} flexGrow={0} columnGap={'1em'}>
+                        <SwitchModeButton />
                         <Tooltip title='Open settings'>
                             <IconButton
                                 onClick={handleOpenUserMenu}
