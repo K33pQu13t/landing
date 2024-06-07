@@ -1,5 +1,4 @@
-import { useTheme } from '@mui/material';
-import { Box, Grid, Typography, useMediaQuery } from '@mui/material';
+import { Box, Grid, Typography } from '@mui/material';
 import { useMemo } from 'react';
 
 const ProductCardContainer = ({
@@ -9,14 +8,6 @@ const ProductCardContainer = ({
     titleSx = {},
     rootRef = null,
 }) => {
-    const theme = useTheme();
-    const isMediumOrSmaller = useMediaQuery(theme.breakpoints.down('lg'));
-
-    const justifyContent = useMemo(
-        () => (isMediumOrSmaller ? 'center' : 'space-between'),
-        [isMediumOrSmaller]
-    );
-
     const titleElement = useMemo(() => {
         if (!title) {
             return null;
@@ -41,8 +32,6 @@ const ProductCardContainer = ({
             {titleElement}
             <Box
                 sx={{
-                    display: 'flex',
-                    justifyContent: 'center',
                     ...sx,
                 }}
                 display={'flex'}
@@ -51,7 +40,7 @@ const ProductCardContainer = ({
                 <Grid
                     container
                     maxWidth={'66%'}
-                    justifyContent={justifyContent}
+                    justifyContent={{ sm: 'space-between', md: 'center' }}
                     spacing={2}
                 >
                     {children}

@@ -7,15 +7,11 @@ const mobile = '73.25%';
 
 const PicWithOverlay = ({ image, children }) => {
     const theme = useTheme();
-    const shouldBeAtCenter = useMediaQuery(theme.breakpoints.down('md'));
-    const isSmall = useMediaQuery(theme.breakpoints.down('sm'));
-
-    const cardMediaSize = useMemo(() => (isSmall ? mobile : _16x9), [isSmall]);
 
     const cardMediaStyles = useMemo(() => {
         const styles = {
             height: 0,
-            paddingTop: cardMediaSize,
+            paddingTop: { xs: mobile, sm: _16x9 },
             maskImage:
                 'linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0))',
         };
@@ -25,28 +21,26 @@ const PicWithOverlay = ({ image, children }) => {
         }
 
         return styles;
-    }, [theme.palette.mode, cardMediaSize]);
-
-    const childrenContainerStyles = useMemo(() => {
-        const styles = {
-            position: 'absolute',
-            bottom: '4vh',
-            left: '1.1em',
-            color: 'white',
-        };
-
-        if (shouldBeAtCenter) {
-            styles.left = '50%';
-            styles.transform = 'translateX(-50%)';
-        }
-
-        return styles;
-    }, [shouldBeAtCenter]);
+    }, [theme.palette.mode]);
 
     return (
         <Card sx={{ position: 'relative', borderRadius: 0, boxShadow: 'none' }}>
             <CardMedia sx={cardMediaStyles} image={image} />
-            <Box sx={childrenContainerStyles}>{children}</Box>
+            <Box
+                sx={{
+                    position: 'absolute',
+                    bottom: '4vh',
+                    left: { xs: '50%', sm: '50%', md: '1.1em' },
+                    transform: {
+                        xs: 'translateX(-50%)',
+                        sm: 'translateX(-50%)',
+                        md: 'none',
+                    },
+                    color: 'white',
+                }}
+            >
+                {children}
+            </Box>
         </Card>
     );
 };

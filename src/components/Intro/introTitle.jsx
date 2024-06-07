@@ -9,8 +9,6 @@ import { useMemo } from 'react';
 
 const IntroTitle = ({ onButtonClick = () => {} }) => {
     const theme = useTheme();
-    const isSmall = useMediaQuery(theme.breakpoints.down('md'));
-    const textAlign = useMemo(() => (isSmall ? 'center' : 'left'));
     const textColor = useMemo(() =>
         theme.palette.mode === 'dark' ? 'white' : 'black'
     );
@@ -27,7 +25,7 @@ const IntroTitle = ({ onButtonClick = () => {} }) => {
             <Typography
                 fontSize={{ xs: 24, sm: 30, md: 39, lg: 45 }}
                 fontWeight={'bold'}
-                textAlign={textAlign}
+                textAlign={{ sm: 'center', md: 'left' }}
                 color={textColor}
                 lineHeight={'115%'}
             >
@@ -35,7 +33,7 @@ const IntroTitle = ({ onButtonClick = () => {} }) => {
             </Typography>
             <Typography
                 fontSize={{ xs: 14, sm: 18, md: 25, lg: 28 }}
-                textAlign={textAlign}
+                textAlign={{ sm: 'center', md: 'left' }}
                 color={textColor}
                 marginTop={4}
             >

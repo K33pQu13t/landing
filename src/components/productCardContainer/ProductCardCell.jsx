@@ -1,23 +1,18 @@
-import { useTheme } from '@mui/material';
-import { Grid, useMediaQuery } from '@mui/material';
-import { useMemo } from 'react';
+import { Grid } from '@mui/material';
 
 const ProductCardCell = ({ sm, lg, children, justifyContent = 'center' }) => {
-    const theme = useTheme();
-    const isColumnLayout = useMediaQuery(theme.breakpoints.down('lg'));
-
-    const patchedJustifyContent = useMemo(
-        () => (isColumnLayout ? 'center' : justifyContent),
-        [isColumnLayout, justifyContent]
-    );
-
     return (
         <Grid
             item
             sm={sm}
             lg={lg}
             display={'flex'}
-            justifyContent={patchedJustifyContent}
+            justifyContent={{
+                xs: 'center',
+                sm: 'center',
+                md: 'center',
+                lg: justifyContent,
+            }}
         >
             {children}
         </Grid>

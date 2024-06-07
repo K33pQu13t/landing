@@ -32,11 +32,11 @@ const Footer = () => {
             <Typography
                 color='text.secondary'
                 variant='subtitle2'
-                fontSize={'0.9rem'}
+                fontSize={{ xs: '0.7rem', sm: '0.9rem' }}
                 textAlign={'center'}
                 position={'absolute'}
                 bottom={0}
-                right={28}
+                right={{ xs: 4, sm: 28 }}
             >
                 Made by K33p_Qu13t
             </Typography>
